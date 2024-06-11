@@ -1,0 +1,32 @@
+/* Diseño de los cards */
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Espacio entre los cards */
+  flex-wrap: wrap; /* Permite que los cards se ajusten a múltiples líneas si es necesario */
+}
+
+.card {
+  width: 10rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  margin: 10px;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px auto;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-text {
+  margin: 0;
+}
