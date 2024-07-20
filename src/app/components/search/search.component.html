@@ -30,28 +30,36 @@
             <span class="text-carrito">Carrito de Compras</span>
           </a>
         </li>
-        <li>
-          <a href="">
-            <img
-              width="100"
-              height="100"
-              src="https://img.icons8.com/clouds/100/login-rounded-right.png"
-              alt="login-rounded-right"
-            />
-            <span class="text-registrarse">Iniciar Sesion</span>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img
-              width="64"
-              height="64"
-              src="https://img.icons8.com/arcade/64/signing-a-document.png"
-              alt="signing-a-document"
-            />
-            <span class="text-registrarse">Registrarse</span>
-          </a>
-        </li>
+        @if(nombre === ''){
+          <li>
+            <a [routerLink]="['login']"[routerLink]="['login']">
+              <img
+                width="100"
+                height="100"
+                src="https://img.icons8.com/clouds/100/login-rounded-right.png"
+                alt="login-rounded-right"
+              />
+              <span class="text-registrarse">Iniciar Sesion</span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['registro']">
+              <img
+                width="64"
+                height="64"
+                src="https://img.icons8.com/arcade/64/signing-a-document.png"
+                alt="signing-a-document"
+              />
+              <span class="text-registrarse">Registrarse</span>
+            </a>
+          </li>
+        }@else {
+          <li>
+          
+              <span class="text-registrarse">{{nombre}}</span>
+           
+          </li>
+        }
       </ul>
     </div>
   </div>
