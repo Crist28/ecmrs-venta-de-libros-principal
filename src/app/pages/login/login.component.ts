@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
 import { NgForm, FormsModule, } from '@angular/forms';
 import { ClienteService } from '../../services/cliente.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 declare let iziToast: any;
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  passwordFieldType: string = "password";
   public cliente: any = {};
   public usuario: any | null = null;
-   public token :  string
+  public token :  string
 
   constructor(private clienteService: ClienteService, private router: Router) {
     const token = this.clienteService.getToken();
@@ -30,7 +31,7 @@ export class LoginComponent {
       this.clienteService.login_cliente(data).subscribe(
         (response) => {
           this.usuario = response.data
-      
+
           localStorage.setItem("token", response.token)
           localStorage.setItem("id", response.data._id)
           localStorage.setItem("nombre", response.data.name)
@@ -52,5 +53,9 @@ export class LoginComponent {
         message: 'Todos los campos requeridos deben estar completos.',
       });
     }
+  }
+
+  showPassword(event:any) {
+    this.passwordFieldType = event.target.checked ? 'text' : 'password';
   }
 }
