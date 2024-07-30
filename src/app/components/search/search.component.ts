@@ -1,5 +1,9 @@
 import { Component, AfterViewInit, ElementRef, Renderer2, HostListener } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ClienteService } from '../../services/cliente.service';
+
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-search',
@@ -10,7 +14,11 @@ import { RouterLink } from '@angular/router';
 })
 export class SearchComponent implements AfterViewInit {
   public nombre: string = '';
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  public token: string;
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private clienteService: ClienteService, private router: Router) {
+    const token = this.clienteService.getToken();
+    this.token = token !== null ? token: '';
+  }
 
   ngOnInit() {
     if(typeof localStorage !== 'undefined'){
@@ -44,4 +52,28 @@ export class SearchComponent implements AfterViewInit {
       this.renderer.removeClass(searchInput, 'active');
     }
   }
+
+  cerrar_sesion() {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, cerrar sesión',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('id');
+        localStorage.removeItem('nombre');
+        this.router.navigate(['']).then(() => {
+          window.location.reload();
+        });
+      }
+    });
+  }
+  
 }
+

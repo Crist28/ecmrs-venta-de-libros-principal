@@ -46,12 +46,6 @@
   box-sizing: border-box;
 }
 
-.containerPassword{
-  /* display: flex;
-  align-items: center; */
-  /* padding-bottom: 30px; */
-  /* color: var(--blue-queen); */
-}
 
 .checkButton input{
   border: 1px solid #ccc;

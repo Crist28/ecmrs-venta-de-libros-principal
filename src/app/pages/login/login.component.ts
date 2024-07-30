@@ -56,6 +56,8 @@ export class LoginComponent {
   }
 
   showPassword(event:any) {
+    const inputElement = event.target as HTMLInputElement;
+    console.log('Checkbox changed:', inputElement.checked);
     this.passwordFieldType = event.target.checked ? 'text' : 'password';
   }
 }
