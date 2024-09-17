@@ -30,6 +30,7 @@ export class LoginComponent {
       };
       this.clienteService.login_cliente(data).subscribe(
         (response) => {
+          console.log(response);
           this.usuario = response.data
 
           localStorage.setItem("token", response.token)
