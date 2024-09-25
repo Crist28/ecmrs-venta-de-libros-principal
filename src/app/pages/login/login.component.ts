@@ -30,22 +30,23 @@ export class LoginComponent {
       };
       this.clienteService.login_cliente(data).subscribe(
         (response) => {
-          console.log(response);
+          if (response.data == undefined) {
+            iziToast.error({
+              title: 'Error',
+              position: 'topRight',
+              message: 'Usuario no encontrado',
+            });
+          }else {
+            console.log(response);
           this.usuario = response.data
 
           localStorage.setItem("token", response.token)
           localStorage.setItem("id", response.data._id)
           localStorage.setItem("nombre", response.data.name)
           this.router.navigate([''])
+          }
 
-        },
-        (error) => {
-          iziToast.error({
-            title: 'Error',
-            position: 'topRight',
-            message: 'Usuario no encontrado',
-          });
-        }
+        }        
       );
     } else {
       iziToast.error({
