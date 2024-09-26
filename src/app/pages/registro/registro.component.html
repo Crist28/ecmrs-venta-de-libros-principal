@@ -7,8 +7,8 @@
       </div>
       <div class="row clearfix">
         <div class="">
-          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"> 
-         
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
               <input type="email" name="email"  formControlName="email" placeholder="Email" required />
             </div>
@@ -45,11 +45,11 @@
                 <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
                   <input type="email" name="profile" formControlName="profile" placeholder="Profile" required />
                 </div>
-    
+
             <input class="button" type="submit" value="Register" />
           </form>
         </div>
-        <a [routerLink]="['/login']">¿tienes una cuenta?</a>
+        <a [routerLink]="['/login']">¿Tienes una cuenta?</a>
       </div>
     </div>
   </div>

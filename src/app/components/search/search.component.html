@@ -8,7 +8,7 @@
           class="search-input"
           placeholder="Search..."
         />
-        <a href="" id="searchIcon">
+        
           <img
             class="fas"
             width="40"
@@ -16,7 +16,7 @@
             src="https://img.icons8.com/fluency/48/search-more.png"
             alt="search-more"
           />
-        </a>
+      
       </div>
       <ul class="nav-items">
         <li>
@@ -54,9 +54,20 @@
             </a>
           </li>
         }@else {
-          <li>
-          
-              <span class="text-registrarse">{{nombre}}</span>
+          <li>            
+
+            <div class="btn-group">
+              <button class="btn btn-lg me-1" type="button">
+                <span class="text-registrarse">{{nombre}}</span>
+              </button>
+              <button type="button" class="btn btn-lg dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" (click)="cerrar_sesion()" style="cursor: pointer;">cerrar sesión</a></li>
+              </ul>
+            </div>
+              
            
           </li>
         }
