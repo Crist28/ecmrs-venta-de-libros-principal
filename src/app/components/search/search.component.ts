@@ -33,17 +33,10 @@ export class SearchComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Asegúrate de que estamos en el navegador antes de manipular el DOM
-    if (isPlatformBrowser(this.platformId)) {
-      const searchInput = this.elementRef.nativeElement.querySelector('#searchInput');
-      const searchIcon = this.elementRef.nativeElement.querySelector('#searchIcon');
+    const searchInput = this.elementRef.nativeElement.querySelector('#searchInput');
+    const searchIcon = this.elementRef.nativeElement.querySelector('#searchIcon');
 
-      if (searchInput && searchIcon) {
-        this.renderer.listen(searchIcon, 'click', (event: Event) => this.toggleSearch(event, searchInput));
-      } else {
-        console.error('searchInput o searchIcon no encontrados en el DOM');
-      }
-    }
+    this.renderer.listen(searchIcon, 'click', (event: Event) => this.toggleSearch(event, searchInput));
   }
 
   toggleSearch(event: Event, searchInput: HTMLElement) {
@@ -60,8 +53,8 @@ export class SearchComponent implements AfterViewInit {
   onDocumentClick(event: Event) {
     const searchInput = this.elementRef.nativeElement.querySelector('#searchInput');
     const searchIcon = this.elementRef.nativeElement.querySelector('#searchIcon');
-
-    if (searchIcon && searchInput && !searchIcon.contains(event.target) && !searchInput.contains(event.target)) {
+    
+    if (!searchIcon.contains(event.target) && !searchInput.contains(event.target)) {
       this.renderer.removeClass(searchInput, 'active');
     }
   }
