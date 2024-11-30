@@ -1,229 +1,95 @@
+/* Estructura principal */
 nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 35vh;
-  background: linear-gradient(to bottom, #87CEEB, #ffffff); /* Degradado de cielo */
-  /* border-bottom: 1px solid #ccc; */
+  padding: 20px;
+  background: linear-gradient(to bottom, #87CEEB, #ffffff);
 }
 
+/* Contenedor de navegación */
 .navegacion {
-  position: relative;
-  /* width: 600px; */
-  width: 100%;
-  height: 150px;
-  /* background: darkblue; */
-  border: #222327;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  /* background: rgba(255, 255, 255, 0.4); */
+  width: 100%;
+  max-width: 1200px; /* Máximo ancho */
 }
 
+/* Lista de navegación */
 .navegacion ul {
   display: flex;
-  width: 550px;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
+/* Ítems de la lista */
 .navegacion ul li {
-  position: relative;
-  list-style: none;
-  width: 70px;
-  height: 70px;
-  z-index: 1;
+  flex: 1;
+  text-align: center;
 }
 
 .navegacion ul li a {
-  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  width: 100%;
-  text-align: center;
-  font-weight: 500;
-}
-
-.navegacion ul li a .icon {
-  position: relative;
-  display: block;
-  line-height: 75px;
-  font-size: 1.5em;
-  text-align: center;
-  transition: 0.5s;
+  align-items: center;
+  text-decoration: none;
   color: #222327;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .navegacion ul li.active a .icon {
-  transform: translateY(-40px);
+  transform: translateY(-10px);
   color: crimson;
 }
 
+.navegacion ul li a .icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
 .navegacion ul li a .text {
-  position: absolute;
-  color: #222327;
-  font-weight: 400;
-  font-size: 0.75em;
-  letter-spacing: 0.05em;
-  transition: 0.5s;
-  opacity: 0;
-  transform: translateY(20px);
+  font-size: 0.875rem;
+  opacity: 0.8;
 }
 
-.navegacion ul li.active a .text {
-  opacity: 1;
-  transform: translateY(10px);
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .navegacion ul {
+    flex-direction: column; /* Ajustar en dispositivos pequeños */
+  }
+
+  .navegacion ul li {
+    width: 100%;
+  }
+
+  .navegacion ul li a .icon {
+    font-size: 2rem; /* Iconos más grandes en móviles */
+  }
+
+  .navegacion ul li a .text {
+    font-size: 1rem;
+  }
 }
 
-.indicador {
-  position: absolute;
-  top: 0;
-  width: 70px;
-  height: 70px;
-  background: radial-gradient(circle, #ffd700, #ffa500);
-  border-radius: 50%;
-  border: 6px solid transparent;
-  transition: 0.5s;
-  box-shadow: 0 0 10px #ffa500, 0 0 20px #ffa500, 0 0 30px #ff8c00, 0 0 40px #ff8c00;
+@media (max-width: 480px) {
+  .navegacion {
+    padding: 10px;
+  }
+
+  .navegacion ul {
+    width: 100%;
+  }
+
+  .navegacion ul li a .icon {
+    font-size: 1.8rem;
+  }
+
+  .navegacion ul li a .text {
+    font-size: 0.9rem;
+  }
 }
-
-.indicador::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -22px;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  border-top-right-radius: 20px;
-  /* box-shadow: 0px -10px 0 0 greenyellow; */
-}
-
-.indicador::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -22px;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  border-top-left-radius: 20px;
-  /* box-shadow: 0px -10px 0 0 greenyellow; */
-}
-
-/* iconos */
-.home-icon {
-  width: 90%;
-  height: 190%;
-  position: relative;
-  left: 1px;  /* Ajusta este valor para mover a la derecha */
-  top: -5px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.categoria-icon {
-  width: 90%;
-  height: 190%;
-  position: relative;
-  left: 9px;  /* Ajusta este valor para mover a la derecha */
-  top: 5px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.libros-icon {
-  width: 90%;
-  height: 190%;
-  position: relative;
-  left: 8px;  /* Ajusta este valor para mover a la derecha */
-  top: 5px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.express-icon {
-  width: 90%;
-  height: 190%;
-  position: relative;
-  left: 20px;  /* Ajusta este valor para mover a la derecha */
-  top: 2px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.affiliate-icon {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  left: 25px;  /* Ajusta este valor para mover a la derecha */
-  top: 5px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.help-icon {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  left: 30px;  /* Ajusta este valor para mover a la derecha */
-  top: 5px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.options-icon {
-  width: 80%;
-  height: 80%;
-  position: relative;
-  left: 37px;  /* Ajusta este valor para mover a la derecha */
-  top: 5px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.pais-icon {
-  width: 110%;
-  height: 110%;
-  position: relative;
-  left: 40px;  /* Ajusta este valor para mover a la derecha */
-  top: 5px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-/* texto */
-.home-text {
-  position: relative;
-  left: 18px;  /* Ajusta este valor para mover a la derecha */
-  top: 50px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.categoria-text {
-  position: relative;
-  left: 8px;  /* Ajusta este valor para mover a la derecha */
-  top: 50px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.libros-text {
-  position: relative;
-  left: 24px;  /* Ajusta este valor para mover a la derecha */
-  top: 50px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.text-express {
-  position: relative;
-  left: 26px;  /* Ajusta este valor para mover a la derecha */
-  top: 50px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.affiliate-text {
-  position: relative;
-  left: 50%;  /* Ajusta este valor para mover a la derecha */
-  top: 50px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.help-text {
-  position: relative;
-  left: 62%;  /* Ajusta este valor para mover a la derecha */
-  top: 50px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.opiniones-text {
-  position: relative;
-  left: 58%;  /* Ajusta este valor para mover a la derecha */
-  top: 50px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-.pais-text {
-  position: relative;
-  left: 70%;  /* Ajusta este valor para mover a la derecha */
-  top: 45px;    /* Ajusta este valor para mover hacia abajo */
-}
-
-
