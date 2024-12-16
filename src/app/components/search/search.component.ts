@@ -1,4 +1,12 @@
-import { Component, AfterViewInit, ElementRef, Renderer2, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  ElementRef,
+  Renderer2,
+  HostListener,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ClienteService } from '../../services/cliente.service';
 import Swal from 'sweetalert2';
@@ -9,18 +17,18 @@ import { isPlatformBrowser } from '@angular/common';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'] // Cambié `styleUrl` por `styleUrls`
+  styleUrls: ['./search.component.css'], // Cambié `styleUrl` por `styleUrls`
 })
 export class SearchComponent implements AfterViewInit {
   public nombre: string = '';
   public token: string;
 
   constructor(
-    private elementRef: ElementRef, 
-    private renderer: Renderer2, 
-    private clienteService: ClienteService, 
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private clienteService: ClienteService,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object // Inyectar el ID de la plataforma
+    @Inject(PLATFORM_ID) private platformId: Object, // Inyectar el ID de la plataforma
   ) {
     const token = this.clienteService.getToken();
     this.token = token !== null ? token : '';
@@ -28,22 +36,19 @@ export class SearchComponent implements AfterViewInit {
 
   ngOnInit() {
     if (typeof localStorage !== 'undefined') {
-      this.nombre = localStorage.getItem('nombre') || "";
+      this.nombre = localStorage.getItem('nombre') || '';
     }
   }
 
   ngAfterViewInit() {
-    // Asegúrate de que estamos en el navegador antes de manipular el DOM
-    if (isPlatformBrowser(this.platformId)) {
-      const searchInput = this.elementRef.nativeElement.querySelector('#searchInput');
-      const searchIcon = this.elementRef.nativeElement.querySelector('#searchIcon');
+    const searchInput =
+      this.elementRef.nativeElement.querySelector('#searchInput');
+    const searchIcon =
+      this.elementRef.nativeElement.querySelector('#searchIcon');
 
-      if (searchInput && searchIcon) {
-        this.renderer.listen(searchIcon, 'click', (event: Event) => this.toggleSearch(event, searchInput));
-      } else {
-        console.error('searchInput o searchIcon no encontrados en el DOM');
-      }
-    }
+    this.renderer.listen(searchIcon, 'click', (event: Event) =>
+      this.toggleSearch(event, searchInput),
+    );
   }
 
   toggleSearch(event: Event, searchInput: HTMLElement) {
@@ -58,10 +63,15 @@ export class SearchComponent implements AfterViewInit {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
-    const searchInput = this.elementRef.nativeElement.querySelector('#searchInput');
-    const searchIcon = this.elementRef.nativeElement.querySelector('#searchIcon');
+    const searchInput =
+      this.elementRef.nativeElement.querySelector('#searchInput');
+    const searchIcon =
+      this.elementRef.nativeElement.querySelector('#searchIcon');
 
-    if (searchIcon && searchInput && !searchIcon.contains(event.target) && !searchInput.contains(event.target)) {
+    if (
+      !searchIcon.contains(event.target) &&
+      !searchInput.contains(event.target)
+    ) {
       this.renderer.removeClass(searchInput, 'active');
     }
   }
@@ -75,7 +85,7 @@ export class SearchComponent implements AfterViewInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Sí, cerrar sesión',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem('token');
